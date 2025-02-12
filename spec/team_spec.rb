@@ -3,34 +3,58 @@ require './lib/team'
 
 RSpec.describe Team do
     it "is a team" do
-        player_1 = Player.new("Michael Palledorous" , 1000000, 36)
-        player_2 = Player.new("Kenny DeNunez", 500000, 24)
-        team = Team.new("Dodgers", "Los Angeles")
+    team = Team.new("Dodgers", "Los Angeles")
+    player_1 = Player.new("Michael Palledorous" , 1000000, 36)
+    player_2 = Player.new("Kenny DeNunez", 500000, 24)
+    player_3 = Player.new("Alan McClennan", 750000, 48)
+    player_4 = Player.new("Hamilton Porter", 100000, 12)
 
         expect(team).to be_a Team
     end
     it "has a roster" do
-        player_1 = Player.new("Michael Palledorous" , 1000000, 36)
-        player_2 = Player.new("Kenny DeNunez", 500000, 24)
-        team = Team.new("Dodgers", "Los Angeles")
+    team = Team.new("Dodgers", "Los Angeles")
+    player_1 = Player.new("Michael Palledorous" , 1000000, 36)
+    player_2 = Player.new("Kenny DeNunez", 500000, 24)
+    player_3 = Player.new("Alan McClennan", 750000, 48)
+    player_4 = Player.new("Hamilton Porter", 100000, 12)
 
-        expect(team.roster).to eq([])
+    expect(team.roster).to eq([])
     end
     it "can count players" do
-        player_1 = Player.new("Michael Palledorous" , 1000000, 36)
-        player_2 = Player.new("Kenny DeNunez", 500000, 24)
-        team = Team.new("Dodgers", "Los Angeles")
+    team = Team.new("Dodgers", "Los Angeles")
+    player_1 = Player.new("Michael Palledorous" , 1000000, 36)
+    player_2 = Player.new("Kenny DeNunez", 500000, 24)
+    player_3 = Player.new("Alan McClennan", 750000, 48)
+    player_4 = Player.new("Hamilton Porter", 100000, 12)
 
         expect(team.player_count).to eq(0)
     end
     it "add players" do
+    team = Team.new("Dodgers", "Los Angeles")
     player_1 = Player.new("Michael Palledorous" , 1000000, 36)
     player_2 = Player.new("Kenny DeNunez", 500000, 24)
-    team = Team.new("Dodgers", "Los Angeles")
+    player_3 = Player.new("Alan McClennan", 750000, 48)
+    player_4 = Player.new("Hamilton Porter", 100000, 12)
     team.add_player(player_1)
     team.add_player(player_2)
+    team.add_player(player_3)
+    team.add_player(player_4)
     
-    expect(team.roster).to include(player_1, player_2)
-    expect(team.player_count).to eq(2)
+    expect(team.roster).to include(player_1, player_2, player_3, player_4)
+    expect(team.player_count).to eq(4)
+    end
+    it "show player by contract length" do
+    team = Team.new("Dodgers", "Los Angeles")
+    player_1 = Player.new("Michael Palledorous" , 1000000, 36)
+    player_2 = Player.new("Kenny DeNunez", 500000, 24)
+    player_3 = Player.new("Alan McClennan", 750000, 48)
+    player_4 = Player.new("Hamilton Porter", 100000, 12)
+    team.add_player(player_1)
+    team.add_player(player_2)
+    team.add_player(player_3)
+    team.add_player(player_4)
+
+    expect(team.long_term_player).to be(player_1, player_3)
+    expect(team.short_term_player).to be(player_2, player_4)
     end
 end

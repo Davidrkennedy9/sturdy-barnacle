@@ -5,7 +5,7 @@ class Team
         @team_name = team_name
         @team_state = team_state
         @roster = []
-        
+       
     end
     def player_count
         @roster.count
@@ -13,5 +13,9 @@ class Team
     def add_player(player)
         @roster << player
     end
-        
+    def long_term_player
+        @roster.contract_length 
+       
+    
+    end      
 end
